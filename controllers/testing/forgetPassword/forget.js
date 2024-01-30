@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 exports.forgetController = {
-  restPassword: (req, res) => {
+  resetPassword: (req, res) => {
     const token = req.params.token;
     res.render("reset", { data: token });
   },

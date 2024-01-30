@@ -1,9 +1,9 @@
 const tesingModel = require("../../models/testing");
+const empModel = require("../../models/employee/employeeSchema");
+
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const sendMail = require("../../utils/mailer");
-const path = require("path");
-const fs = require("fs");
 
 exports.testingController = {
   getSignIn: (req, res) => {
@@ -13,7 +13,7 @@ exports.testingController = {
   },
 
   index: async (req, res) => {
-    let count = await tesingModel.find().count();
+    let count = await empModel.find().count();
     res.render("index", { data: req.user, Usercount: count });
   },
 
@@ -81,8 +81,6 @@ exports.testingController = {
     try {
       const { email, password } = req.body;
       const user = await tesingModel.findOne({ email });
-      console.log(user);
-
       if (!user) {
         req.flash("error", "User not found plesae signup");
         return res.redirect("/testing/signin-page");

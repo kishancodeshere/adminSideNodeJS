@@ -72,11 +72,11 @@
                             <div class="card mini-stat bg-primary">
                                 <div class="card-body mini-stat-img">
                                     <div class="mini-stat-icon">
-                                        <i class="mdi mdi-cube-outline float-right"></i>
+                                        <i class="mdi mdi-account-multiple-outline float-right"></i>
                                     </div>
                                     <div class="text-white">
                                         <h6 class="text-uppercase mb-3 font-size-16">Users</h6>
-                                        <h2 class="mb-4"><%=Usercount%></h2>
+                                        <h2 class="mb-4 count"><%=Usercount%></h2>
                                         <span class="badge badge-info"> +<%=Usercount%>% </span> <span class="ml-2">All user count is here</span>
                                     </div>
                                 </div>
@@ -639,6 +639,25 @@
 
             <!-- App js -->
             <script src="/assets/js/app.js"></script>
+     
 </body>
-
+<script>
+    $(".count").each(function () {
+        $(this)
+          .prop("Counter", 0)
+          .animate(
+            {
+              Counter: $(this).text(),
+            },
+            {
+              duration: 1000,
+              easing: "swing",
+              step: function (now) {
+                now = Number(Math.ceil(now)).toLocaleString("en");
+                $(this).text(now);
+              },
+            }
+          );
+      });
+</script>
 </html>
