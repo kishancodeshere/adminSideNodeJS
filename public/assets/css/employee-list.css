@@ -25,7 +25,7 @@ body {
 }
 
 .text-muted {
-    color: #8898aa !important;
+    color:#303c4c !important;
 }
 
 [type=button]:not(:disabled),
@@ -46,3 +46,4 @@ button:not(:disabled) {
     max-width: 150px;
     border-radius: 20px;
 }
+

@@ -2,7 +2,8 @@ const jwt = require("jsonwebtoken");
 const testingModel = require("../models/testing");
 const resticLoginAdmin = async (req, res, next) => {
   try {
-    const token = req.cookies.token || req.params.token;
+    const token = req.cookies.token || req.params.token || req.query.token;
+
     if (!token) {
       return res.redirect("/testing/signin-page");
     }

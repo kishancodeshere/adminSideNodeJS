@@ -3,7 +3,6 @@ const router = express.Router();
 const { testingController } = require("../../controllers/testing/testing");
 const {forgetController} = require("../../controllers/testing/forgetPassword/forget");
 const {uploadController} = require("../../controllers/testing/uploadImage/upload");
-const {listController}=require("../../controllers/admin/listController");
 const { resticLoginAdmin } = require("../../middlewares/auth");
 
 const upload = require("../../utils/profile-image");
@@ -40,10 +39,7 @@ router.post("/forget-change-password/:token",forgetController.forgetChangePasswo
 router.post("/upload-profile",resticLoginAdmin,upload.single("image"), uploadController.uploadImage);
 
 
-// --------------------------------- Manage all changes -------------------------------- //
 
-router.post("/employee-list",listController.listPage);
-router.get("/employee-list-page",resticLoginAdmin,listController.getemployeeList);
 
 
 
