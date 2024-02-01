@@ -6,37 +6,63 @@ exports.listController = {
     res.render("employe-list", { data: req.user });
   },
   employeeData: async (req, res) => {
-    console.log(req.query);
-    console.log(typeof req.query.search.value.trim());
     let skip = parseInt(req.query.start) || 0;
     let limit = parseInt(req.query.length) || 10;
-    const search = req.query.search.value;
+    const search = req.query.search.value.trim();
     let regex = new RegExp(search, "i");
+    let emp;
 
-    let emp = await QueryData.findQuery(
-      {
-        $or: [
-          { name: regex },
-          { city: regex },
-          { email: regex },
-          { designation: regex },
-          // { salary: regex },
-        ],
-      },
-      {},
-      skip,
-      limit
-    );
+    if (search == "") {
+      emp = await QueryData.findQuery(
+        {
+          $or: [
+            { name: regex },
+            { city: regex },
+            { email: regex },
+            { designation: regex },
+          ],
+        },
+        {},
+        skip,
+        limit
+      );
+    } else if (!isNaN(search)) {
+      emp = await QueryData.findQuery(
+        { salary: req.query.search.value },
 
-    let recordTotal = await QueryData.countEmployee({
+        {},
+        skip,
+        limit
+      );
+    } else {
+      emp = await QueryData.findQuery(
+        {
+          $or: [
+            { name: regex },
+            { city: regex },
+            { email: regex },
+            { designation: regex },
+          ],
+        },
+        {},
+        skip,
+        limit
+      );
+    }
+
+    recordsTotal = await QueryData.countEmployee({
       $or: [
         { name: regex },
         { city: regex },
         { email: regex },
         { designation: regex },
-        // { salary: regex },
       ],
     });
-    res.json({ data: emp, recordTotal, recordsFiltered: recordTotal });
+
+    res.json({
+      data: emp,
+      recordsTotal,
+      recordsFiltered: recordsTotal,
+    });
   },
 };
