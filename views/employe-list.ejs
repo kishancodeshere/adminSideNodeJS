@@ -60,11 +60,14 @@
             <thead style="color: #303c4c; text-transform: uppercase">
               <tr>
                 <th>Id</th>
+                <th>Iamge</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>City</th>
                 <th>Designation</th>
                 <th>Salary</th>
+                <th>Action</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -107,11 +110,37 @@
       },
       columns: [
         { data: "_id" },
+        {
+          data: "image",
+          render: function (data) {
+            return `<img src="/assets/uploads/${data}"  'height="50px" width="50px"'>`;
+          },
+        },
         { data: "name" },
         { data: "email" },
         { data: "city" },
         { data: "designation" },
         { data: "salary" },
+        {
+          data: null,
+          render: function (data, type, row) {
+            return `<a href="/employee/view-employee-page/${data._id}" class="btn btn-primary">View</a>`;
+          },
+        },
+        {
+          data: null,
+          render: function (data, type) {
+            // Use a checkbox for the rendering
+
+            if (data.status == "active") {
+              return `<input type="checkbox" name="my_checkbox" id="${data._id}" class="btn-status1" value="${data._id}" checked>`;
+            } else {
+              return `<input type="checkbox" name="my_checkbox" id="${data._id}" class="btn-status1" value="${data._id}" >`;
+            }
+          },
+          orderable: false, // Disable sorting on this column
+          className: "dt-body-center", // Center align the checkbox
+        },
       ],
 
       paging: true,
@@ -120,6 +149,14 @@
       search: {
         regex: true,
       },
+    });
+  });
+
+  $(document).on("change", ".btn-status1", function (e) {
+    let id = $(this).val();
+
+    $.post(`/employee/view-status-page/${id}`, function (data) {
+      alert(`${data.data.name} Status Change...!`);
     });
   });
 </script>

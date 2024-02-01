@@ -1,4 +1,4 @@
-// const empModel = require("../../models/employee/employeeSchema");
+const empModel = require("../../models/employee/employeeSchema");
 const QueryData = require("../../models/employee/employeeQuery");
 
 exports.listController = {
@@ -64,5 +64,17 @@ exports.listController = {
       recordsTotal,
       recordsFiltered: recordsTotal,
     });
+  },
+
+  statusemployee: async (req, res) => {
+    let data = await empModel.findById({ _id: req.params.id });
+    if (data.status == "active") {
+      data.status = "inactive";
+    } else {
+      data.status = "active";
+    }
+    await data.save();
+
+    res.json({ data });
   },
 };

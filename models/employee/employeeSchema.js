@@ -16,6 +16,10 @@ const employeeSchema = new mongoose.Schema({
   salary: {
     type: Number,
   },
+  status: {
+    type: String,
+    default: "active",
+  },
 });
 
 const empModel = mongoose.model("employee", employeeSchema);

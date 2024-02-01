@@ -5,13 +5,18 @@ const findQuery = async (obj, sortObj, skip, limit) => {
     .skip(skip)
     .limit(limit)
     .lean();
-   return data;
+  return data;
 };
 
 const countEmployee = async (obj) => {
   const data = await Employee.countDocuments(obj);
-  
+
   return data;
 };
 
-module.exports = { findQuery, countEmployee };
+const employeefindOne = async (Obj) => {
+  const data = await Employee.findOne(Obj);
+  return data;
+};
+
+module.exports = { findQuery, countEmployee, employeefindOne };
