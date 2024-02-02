@@ -15,6 +15,7 @@ const connectDatabase = require("./config/db");
 dotEnv.config();
 connectDatabase();
 
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.use(express.json());

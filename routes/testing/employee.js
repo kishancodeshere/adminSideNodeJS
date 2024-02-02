@@ -9,7 +9,11 @@ const { viewEmployeeController } = require("../../controllers/admin/viewEmployee
 router.get("/employee-list-page",resticLoginAdmin,listController.getemployeeList);
 router.get("/employee-data", resticLoginAdmin,listController.employeeData);
 
-router.get("/view-employee-page/:id",resticLoginAdmin,viewEmployeeController.viewemployee);
-router.post("/view-status-page/:id",resticLoginAdmin,listController.statusemployee);
+router.get("/view-employee-page/:id",resticLoginAdmin,viewEmployeeController.viewEmployee);
+router.post("/view-status-page/:id",resticLoginAdmin,listController.statusEmployee);
+router.get("/view-employee-delete/:id",resticLoginAdmin,listController.deleteEmployee);
+router.get("/view-employee-update/:id",resticLoginAdmin,listController.getUpdateEmployee);
+router.post("/employee-update/:id",resticLoginAdmin,listController.UpdateEmployeeProfile);
+
 
 module.exports = router;
