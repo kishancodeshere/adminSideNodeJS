@@ -65,10 +65,12 @@ exports.testingController = {
           city,
           isProfile,
         });
-        await newUser.save();
+        let data = await newUser.save();
         return res.json({
+          status: 200,
           success: true,
           massage: "User Create SuccessFully",
+          data,
         });
       }
     } catch (error) {

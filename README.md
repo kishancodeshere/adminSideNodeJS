@@ -6,6 +6,6 @@ ejs
 user authentication using JWT
 signout module
 change Password Module
-chnage User Profile module
+change User Profile module
 nodemailer only send mail to user
 emplyee pageing
