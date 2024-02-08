@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      content="Premium Multipurpose Admin & Dashboard Template"
+      name="description"
+    />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" />
+
+    <!-- Bootstrap Css -->
+    <link
+      href="/assets/css/bootstrap.min.css"
+      id="bootstrap-style"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- Icons Css -->
+    <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link
+      href="/assets/css/app.min.css"
+      id="app-style"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <link rel="stylesheet" href="../public/assets/css/profile-page.css" />
+    <title>Document</title>
+  </head>
+
+  <body data-sidebar="dark">
+    <%- include('include/header') %> <%- include('include/left-sidebar') %>
+
+    <div class="main-content">
+      <div class="page-content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="page-title-box">
+                <h4>Profile</h4>
+                <ol class="breadcrumb m-0">
+                  <li class="breadcrumb-item">
+                    <a href="javascript: void(0);">Lexa</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a href="javascript: void(0);">Profile</a>
+                  </li>
+                  <li class="breadcrumb-item active">Profile</li>
+                </ol>
+              </div>
+            </div>
+            <hr class="mt-0 mb-4" />
+            <div class="container-xl px-4 mt-4">
+              <% if (updateImg.length > 0) { %>
+              <div class="flash-message" style="color: green">
+                <h5><%= updateImg %></h5>
+              </div>
+              <% } %>
+              <div class="row">
+                <div class="col-xl-4">
+                  <!-- Profile picture card-->
+                  <div class="card mb-4 mb-xl-0">
+                    <div class="card-header">Profile Picture</div>
+                    <div class="card-body text-center">
+                      <!-- Profile picture image-->
+                      <form
+                        action="/testing/upload-profile"
+                        method="post"
+                        enctype="multipart/form-data"
+                      >
+                        <img
+                          class="mb-2"
+                          style="border-radius: 7% !important; height: 10rem"
+                          src="<%=data.image %>"
+                          alt=""
+                        />
+                        <!-- Profile picture help block-->
+                        <div class="small font-italic text-muted mb-4">
+                          JPG or PNG no larger than 5 MB
+                        </div>
+                        <input
+                          class="form-control"
+                          type="file"
+                          name="image"
+                          accept="image/*"
+                        />
+                        <br />
+                        <!-- Profile picture upload button-->
+                        <button class="btn btn-primary" type="submit">
+                          Upload new image
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-8">
+                  <!-- Account details card-->
+                  <% if (updateMsg.length > 0) { %>
+                  <div class="flash-message" style="color: green">
+                    <h5><%= updateMsg %></h5>
+                  </div>
+                  <% } %>
+                  <div class="card mb-4">
+                    <div class="card-header">Account Details</div>
+                    <div class="card-body">
+                      <form action="/testing/updateProfile" method="post">
+                        <!-- Form Group (username)-->
+                        <div class="mb-3">
+                          <label class="small mb-1" for="inputUsername"
+                            >Username (how your name will appear to other users
+                            on the site)</label
+                          >
+                          <input
+                            class="form-control"
+                            id="inputUsername"
+                            type="text"
+                            placeholder="Enter your username"
+                            value="<%=data.name  %>"
+                            name="name"
+                          />
+                        </div>
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                          <!-- Form Group (first name)-->
+                          <!-- <div class="col-md-6">
+                            <label class="small mb-1" for="inputFirstName"
+                              >First name</label
+                            >
+                            <input
+                              class="form-control"
+                              id="inputFirstName"
+                              type="text"
+                              placeholder="Enter your first name"
+                              value="Valerie"
+                            />
+                          </div> -->
+                          <!-- Form Group (last name)-->
+                          <!-- <div class="col-md-6">
+                            <label class="small mb-1" for="inputLastName"
+                              >Last name</label
+                            >
+                            <input
+                              class="form-control"
+                              id="inputLastName"
+                              type="text"
+                              placeholder="Enter your last name"
+                              value="Luna"
+                            />
+                          </div> -->
+                        </div>
+                        <!-- Form Row        -->
+                        <div class="row gx-3 mb-3">
+                          <!-- Form Group (organization name)-->
+                          <!-- <div class="col-md-6">
+                            <label class="small mb-1" for="inputOrgName"
+                              >Organization name</label
+                            >
+                            <input
+                              class="form-control"
+                              id="inputOrgName"
+                              type="text"
+                              placeholder="Enter your organization name"
+                              value="Start Bootstrap"
+                            />
+                          </div> -->
+                          <!-- Form Group (location)-->
+                          <div class="col-md-6">
+                            <label class="small mb-1" for="inputLocation"
+                              >Location</label
+                            >
+                            <input
+                              class="form-control"
+                              id="inputLocation"
+                              type="text"
+                              placeholder="Enter your location"
+                              value="<%=data.city %>"
+                              name="city"
+                            />
+                          </div>
+                        </div>
+                        <!-- Form Group (email address)-->
+                        <div class="mb-3">
+                          <label class="small mb-1" for="inputEmailAddress"
+                            >Email address</label
+                          >
+                          <input
+                            class="form-control"
+                            id="inputEmailAddress"
+                            type="email"
+                            placeholder="Enter your email address"
+                            value="<%=data.email %>"
+                            name="email"
+                          />
+                        </div>
+                        <!-- Form Row-->
+                        <!-- <div class="row gx-3 mb-3">
+                           
+                          <div class="col-md-6">
+                            <label class="small mb-1" for="inputPhone"
+                              >Phone number</label
+                            >
+                            <input
+                              class="form-control"
+                              id="inputPhone"
+                              type="tel"
+                              placeholder="Enter your phone number"
+                              value="555-123-4567"
+                            />
+                          </div>
+                          
+                          <div class="col-md-6">
+                            <label class="small mb-1" for="inputBirthday"
+                              >Birthday</label
+                            >
+                            <input
+                              class="form-control"
+                              id="inputBirthday"
+                              type="text"
+                              name="birthday"
+                              placeholder="Enter your birthday"
+                              value="06/10/1988"
+                            />
+                          </div>
+                        </div> -->
+                        <!-- Save changes button-->
+                        <div class="col-12 mt-2 mb-2">
+                          <a
+                            href="/testing/change-page"
+                            class="text-muted"
+                            style="color: #0061f2"
+                            >Change Password</a
+                          >
+                        </div>
+                        <button class="btn btn-primary" type="submit">
+                          Save changes
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include('include/footer') %>
+
+    <script src="/assets/libs/jquery/jquery.min.js"></script>
+    <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/libs/metismenu/metisMenu.min.js"></script>
+
+    <!-- <script src="/assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="/assets/libs/node-waves/waves.min.js"></script>
+    <script src="/assets/libs/jquery-sparkline/jquery.sparkline.min.js"></script> -->
+
+    <!--Morris Chart-->
+    <!-- <script src="/assets/libs/morris.js/morris.min.js"></script>
+    <script src="/assets/libs/raphael/raphael.min.js"></script>
+
+    <script src="/assets/js/pages/dashboard.init.js"></script> -->
+
+    <script src="/assets/js/app.js"></script>
+  </body>
+  <script>
+    $(document).ready(() => {
+      $(".flash-message").fadeIn(500).delay(3000).fadeOut(500);
+    });
+  </script>
+</html>

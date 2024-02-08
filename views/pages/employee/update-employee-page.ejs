@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      content="Premium Multipurpose Admin & Dashboard Template"
+      name="description"
+    />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" />
+
+    <!-- Bootstrap Css -->
+    <link
+      href="/assets/css/bootstrap.min.css"
+      id="bootstrap-style"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- Icons Css -->
+    <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link
+      href="/assets/css/app.min.css"
+      id="app-style"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="/assets/css/employee-checkbox.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="../public/assets/css/profile-page.css" />
+    <title>Document</title>
+  </head>
+
+  <body data-sidebar="dark">
+    <%- include('../../include/header') %> <%-
+    include('../../include/left-sidebar') %>
+
+    <div class="main-content">
+      <div class="page-content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="page-title-box">
+                <h4>Employee Profile</h4>
+                <ol class="breadcrumb m-0">
+                  <li class="breadcrumb-item">
+                    <a href="javascript: void(0);">Lexa</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a href="javascript: void(0);">Employee Profile</a>
+                  </li>
+                  <li class="breadcrumb-item active">Employee Profile</li>
+                </ol>
+              </div>
+            </div>
+            <hr class="mt-0 mb-4" />
+            <div class="container-xl px-4 mt-4">
+              <div class="row">
+                <div class="col-xl-4">
+                  <!-- Profile picture card-->
+                  <div class="card mb-4 mb-xl-0">
+                    <div class="card-header">Employee Profile Picture</div>
+                    <div class="card-body text-center">
+                      <!-- Profile picture image-->
+                      <form
+                        action="/"
+                        method="post"
+                        enctype="multipart/form-data"
+                      >
+                        <img
+                          class="mb-2"
+                          style="border-radius: 7% !important; height: 10rem"
+                          src="/assets/uploads/demo1.png"
+                          alt=""
+                        />
+                        <!-- Profile picture help block-->
+                        <div class="small font-italic text-muted mb-4">
+                          JPG or PNG no larger than 5 MB
+                        </div>
+                        <!-- <input
+                          class="form-control"
+                          type="file"
+                          name="image"
+                          accept="image/*"
+                        />
+                        <br /> -->
+                        <!-- Profile picture upload button-->
+                        <!-- <button class="btn btn-primary" type="submit">
+                          Upload new image
+                        </button> -->
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-8">
+                  <!-- Account details card-->
+
+                  <div class="card mb-4">
+                    <div class="card-header">Employee Details</div>
+                    <div class="card-body">
+                      <form
+                        action="/employee/employee-update/<%=result._id %>"
+                        method="post"
+                      >
+                        <!-- Form Group (username)-->
+                        <div class="mb-3">
+                          <label class="small mb-1" for="inputUsername"
+                            >Employee name</label
+                          >
+                          <input
+                            class="form-control"
+                            id="inputUsername"
+                            type="text"
+                            placeholder="Enter your username"
+                            value="<%=result.name  %>"
+                            name="name"
+                          />
+                        </div>
+
+                        <div class="row gx-3 mb-3">
+                          <div class="col-md-6">
+                            <label class="small mb-1" for="inputLocation"
+                              >City</label
+                            >
+                            <input
+                              class="form-control"
+                              id="inputLocation"
+                              type="text"
+                              placeholder="Enter your location"
+                              value="<%=result.city %>"
+                              name="city"
+                            />
+                          </div>
+                          <div class="col-md-6">
+                            <label class="small mb-1" for="inputOrgName"
+                              >Designation</label
+                            >
+                            <input
+                              class="form-control"
+                              id="inputOrgName"
+                              type="text"
+                              placeholder="Enter your organization name"
+                              value="<%=result.designation %>"
+                              name="designation"
+                            />
+                          </div>
+                        </div>
+
+                        <div class="row gx-3 mb-3">
+                          <div class="col-md-6">
+                            <label class="small mb-1" for="inputEmailAddress"
+                              >Email address</label
+                            >
+                            <input
+                              class="form-control"
+                              id="inputEmailAddress"
+                              type="email"
+                              placeholder="Enter your email address"
+                              value="<%=result.email %>"
+                              name="email"
+                            />
+                          </div>
+                          <div class="col-md-6">
+                            <label class="small mb-1" for="inputEmailAddress"
+                              >Salary</label
+                            >
+                            <input
+                              class="form-control"
+                              id="inputEmailAddress"
+                              type="text"
+                              placeholder="Enter your email address"
+                              value="<%=result.salary %>"
+                              name="salary"
+                            />
+                          </div>
+                        </div>
+
+                        <div class="row gx-3 mb-3">
+                          <div class="col-md-6">
+                            <label class="small mb-1" for="inputEmailAddress"
+                              >Active Status</label
+                            >
+                            <% if(result.status=="active") { %>
+
+                            <div class="checkbox-wrapper-14">
+                              <input
+                                type="checkbox"
+                                class="switch"
+                                name="my_checkbox"
+                                id="inputEmailAddress"
+                                value="<%=result._id %>"
+                                checked
+                              />
+                            </div>
+                            <% } %> <% if(result.status=="inactive") { %>
+
+                            <div class="checkbox-wrapper-14">
+                              <input
+                                type="checkbox"
+                                class="switch"
+                                name="my_checkbox"
+                                id="inputEmailAddress"
+                                value="<%=result._id %>"
+                              />
+                            </div>
+                            <% } %>
+                          </div>
+                        </div>
+                        <button class="btn btn-primary" type="submit">
+                          Save changes
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include('../../include/footer') %>
+
+    <script src="/assets/libs/jquery/jquery.min.js"></script>
+    <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/libs/metismenu/metisMenu.min.js"></script>
+
+    <!-- <script src="/assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="/assets/libs/node-waves/waves.min.js"></script>
+    <script src="/assets/libs/jquery-sparkline/jquery.sparkline.min.js"></script> -->
+
+    <!--Morris Chart-->
+    <!-- <script src="/assets/libs/morris.js/morris.min.js"></script>
+    <script src="/assets/libs/raphael/raphael.min.js"></script>
+
+    <script src="/assets/js/pages/dashboard.init.js"></script> -->
+
+    <script src="/assets/js/app.js"></script>
+  </body>
+  <script>
+    $(document).on("change", ".switch", function (e) {
+      let id = $(this).val();
+      console.log(id);
+
+      $.post(`/employee/view-status-page/${id}`, function (data) {
+        Swal.fire({
+          title: `${data.data.name}`,
+          text: "Status Change...!",
+          icon: "success",
+        });
+      });
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</html>
