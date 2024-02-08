@@ -27,6 +27,7 @@
       rel="stylesheet"
       type="text/css"
     />
+    <link href="/assets/css/employee-checkbox.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="../public/assets/css/profile-page.css" />
     <title>Document</title>
@@ -176,6 +177,37 @@
                           </div>
                         </div>
 
+                        <div class="row gx-3 mb-3">
+                          <div class="col-md-6">
+                            <label class="small mb-1" for="inputEmailAddress"
+                              >Active Status</label
+                            >
+                            <% if(result.status=="active") { %>
+
+                            <div class="checkbox-wrapper-14">
+                              <input
+                                type="checkbox"
+                                class="switch"
+                                name="my_checkbox"
+                                id="inputEmailAddress"
+                                value="<%=result._id %>"
+                                checked
+                              />
+                            </div>
+                            <% } %> <% if(result.status=="inactive") { %>
+
+                            <div class="checkbox-wrapper-14">
+                              <input
+                                type="checkbox"
+                                class="switch"
+                                name="my_checkbox"
+                                id="inputEmailAddress"
+                                value="<%=result._id %>"
+                              />
+                            </div>
+                            <% } %>
+                          </div>
+                        </div>
                         <button class="btn btn-primary" type="submit">
                           Save changes
                         </button>
@@ -207,4 +239,19 @@
 
     <script src="/assets/js/app.js"></script>
   </body>
+  <script>
+    $(document).on("change", ".switch", function (e) {
+      let id = $(this).val();
+      console.log(id);
+
+      $.post(`/employee/view-status-page/${id}`, function (data) {
+        Swal.fire({
+          title: `${data.data.name}`,
+          text: "Status Change...!",
+          icon: "success",
+        });
+      });
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

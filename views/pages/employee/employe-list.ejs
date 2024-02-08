@@ -93,6 +93,11 @@
 <script>
   $(document).ready(function () {
     $("#dataTable").DataTable({
+      fixedHeader: true,
+      responsive: true,
+      rowReorder: {
+        selector: "td:nth-child(2)",
+      },
       processing: true,
       serverSide: true,
       ajax: {
@@ -143,6 +148,7 @@
       paging: true,
       searching: true,
       processing: true,
+
       search: {
         regex: true,
       },

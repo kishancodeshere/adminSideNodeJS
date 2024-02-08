@@ -16,6 +16,7 @@ const resticLoginAdmin = async (req, res, next) => {
     }
     req.token = token;
     req.imageLoc = user.image;
+
     user.image = `${process.env.url}/assets/uploads/${user.image}`;
     req.user = user;
     next();

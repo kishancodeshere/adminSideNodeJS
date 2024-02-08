@@ -12,9 +12,11 @@ const port = 9101;
 const app = express();
 const connectDatabase = require("./config/db");
 
+//--------database connections --------//
 dotEnv.config();
 connectDatabase();
 
+//-----------ejs Setups---------------//
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
@@ -39,9 +41,11 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(express.static(path.join(__dirname, "public")));
 
+//-------------- routes----------------------//
 app.use("/testing", tesingRoutes);
 app.use("/employee", empRoutes);
 
+//------------runing servre-----------------//
 app.listen(port, () => {
   console.log(`Server is running on port no ${port}`);
 });

@@ -14,7 +14,10 @@ exports.uploadController = {
     if (!exists) {
       return res.json({ Message: "no file exists...." });
     }
-    fs.unlinkSync(imageLoc1);
+
+    if (imageLoc1 != imageLoc1) {
+      fs.unlinkSync(imageLoc1);
+    }
 
     await uploadModel.findByIdAndUpdate(userId, {
       image: req.file.filename,
